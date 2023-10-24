@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>GST Calculator</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<<body style="background-image: url('https://taxconcept.net/wp-content/uploads/2023/10/gst-128129.jpg'); background-repeat: no-repeat; background-size: cover; text-align: center; margin: 0; padding: 0; height: 100%;">
+
+  <div class="top-right-menu">
+    <a href="main.html">Home</a>
+  </div>
+  <div class="calculator-container">
+    <div class="calculator">
+      <h1>GST Calculator</h1>
+      <form id="gstForm">
+        <label for="totalValue">Total Value (in ₹):</label>
+        <input type="text" id="totalValue" placeholder="Enter total value" required>
+        
+        <label for="gstRate">Select GST Rate:</label>
+        <select id="gstRate">
+          <option value="0.05">5%</option>
+          <option value="0.12">12%</option>
+          <option value="0.18">18%</option>
+          <option value="0.28">28%</option>
+        </select>
+        
+        <button type="submit">Calculate GST</button>
+      </form>
+      <div id="results"></div>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("gstForm").addEventListener("submit", function (event) {
+      event.preventDefault();
+
+      const totalValue = parseFloat(document.getElementById("totalValue").value);
+      const gstRate = parseFloat(document.getElementById("gstRate").value);
+      
+      const gstAmount = totalValue * gstRate;
+      const totalInvoiceAmount = totalValue + gstAmount;
+
+      document.getElementById("results").innerHTML = `
+        GST Amount: ₹${gstAmount.toFixed(2)}<br>
+        Total Invoice Amount: ₹${totalInvoiceAmount.toFixed(2)}
+      `;
+    });
+  </script>
+</body>
+</html>
